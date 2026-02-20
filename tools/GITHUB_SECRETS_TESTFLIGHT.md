@@ -27,6 +27,20 @@ $bytes = [System.IO.File]::ReadAllBytes('AuthKey_XXXXXX.p8')
 
 ## One-command setup (recommended)
 
+### Fully automatic interactive mode
+
+If you want the agent/user terminal to complete everything in one run, use:
+
+```powershell
+pwsh .\tools\run_full_release_setup.ps1 -Repo "mhmdzlt/online_store_333"
+```
+
+This flow will:
+- start `gh auth login` if needed,
+- ask only for missing sensitive values,
+- set all required GitHub Secrets,
+- trigger `iOS TestFlight` workflow automatically.
+
 Use the helper script in this repo to set all secrets in one run:
 
 ```powershell
