@@ -1,0 +1,31 @@
+{
+  "@@locale": "en",
+  "appTitle": "Car Store",
+  "brandName": "Karza",
+  "home": "Home",
+  "cart": "Cart",
+  "freebies": "Freebies",
+  "more": "More",
+  "notifications": "Notifications",
+  "exitAppTitle": "Do you want to exit Karza?",
+  "exitAppMessage": "Press \"Exit App\" to confirm.",
+  "exitAppConfirm": "Exit App",
+  "imageSearch": "Image search",
+  "cancel": "Cancel",
+  "imageSearchNoResults": "Image search with no results",
+  "imageSearchResults": "Image search ({count} results)",
+  "@imageSearchResults": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "categories": "Sections",
+  "addToCart": "Add to cart",
+  "price": "Price",
+  "searchHint": "Search for spare parts...",
+  "homeSearchOnMarketplace": "Search in marketplace",
+  "homeQuickNewRequest": "New request",
+  "homeQuickOffers": "Offers",
+  "homeQuickSections": "Sections",
+  "homeQuickOrders": "Orders"
+}

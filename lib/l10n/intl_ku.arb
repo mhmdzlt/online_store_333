@@ -1,0 +1,31 @@
+{
+  "@@locale": "ku",
+  "appTitle": "Firotgeha Erebeyan",
+  "brandName": "Karza",
+  "home": "Sereke",
+  "cart": "Sepet",
+  "freebies": "Diyari",
+  "more": "Zêdetir",
+  "notifications": "Agahdari",
+  "exitAppTitle": "Tu dixwazî ji Karza derkeve?",
+  "exitAppMessage": "Ji bo piştrastkirinê li \"Derketin\" bitikîne.",
+  "exitAppConfirm": "Derkeve",
+  "imageSearch": "Lêgerîna bi wêne",
+  "cancel": "Betal bike",
+  "imageSearchNoResults": "Lêgerîna wêneyê bê encam",
+  "imageSearchResults": "Lêgerîna wêneyê ({count} encam)",
+  "@imageSearchResults": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "categories": "Beş",
+  "addToCart": "Tevlî sepêtê bike",
+  "price": "Buhayî",
+  "searchHint": "Li parçeyên yedek bigere...",
+  "homeSearchOnMarketplace": "Li bazarê bigere",
+  "homeQuickNewRequest": "Daxwaza nû",
+  "homeQuickOffers": "Pêşniyar",
+  "homeQuickSections": "Beş",
+  "homeQuickOrders": "Daxwaz"
+}

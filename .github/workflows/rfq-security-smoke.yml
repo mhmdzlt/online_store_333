@@ -1,0 +1,33 @@
+name: RFQ Security Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - supabase/migrations/**
+      - tools/rfq_security_smoke.ps1
+      - .github/workflows/rfq-security-smoke.yml
+
+jobs:
+  rfq-security-smoke:
+    runs-on: windows-latest
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        shell: pwsh
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:SUPABASE_URL)) {
+            Write-Error 'Missing SUPABASE_URL secret'
+          }
+          if ([string]::IsNullOrWhiteSpace($env:SUPABASE_ANON_KEY)) {
+            Write-Error 'Missing SUPABASE_ANON_KEY secret'
+          }
+
+      - name: Run RFQ security smoke tests
+        shell: pwsh
+        run: ./tools/rfq_security_smoke.ps1

@@ -1,0 +1,31 @@
+{
+  "@@locale": "ckb",
+  "appTitle": "فرۆشگای ئۆتۆمبێل",
+  "brandName": "Karza",
+  "home": "سەرەکی",
+  "cart": "سەبەتە",
+  "freebies": "بەخششەکان",
+  "more": "زیاتر",
+  "notifications": "ئاگادارکردنەوەکان",
+  "exitAppTitle": "دەتەوێت لە Karza بچیتە دەرەوە؟",
+  "exitAppMessage": "بۆ پشتڕاستکردنەوە کرتە لە \"دەرچوون\" بکە.",
+  "exitAppConfirm": "دەرچوون",
+  "imageSearch": "گەڕان بە وێنە",
+  "cancel": "هەڵوەشاندنەوە",
+  "imageSearchNoResults": "گەڕانی وێنە بێ ئەنجام",
+  "imageSearchResults": "گەڕانی وێنە ({count} ئەنجام)",
+  "@imageSearchResults": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "categories": "بەشەکان",
+  "addToCart": "زیادکردن بۆ سەبەت",
+  "price": "نرخ",
+  "searchHint": "گەڕان بۆ پارچەی یەدەک...",
+  "homeSearchOnMarketplace": "گەڕان لە بازاڕ",
+  "homeQuickNewRequest": "داواکاری نوێ",
+  "homeQuickOffers": "ئۆفەرەکان",
+  "homeQuickSections": "بەشەکان",
+  "homeQuickOrders": "داواکاریەکان"
+}

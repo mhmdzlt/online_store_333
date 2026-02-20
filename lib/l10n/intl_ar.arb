@@ -1,0 +1,31 @@
+{
+  "@@locale": "ar",
+  "appTitle": "متجر السيارات",
+  "brandName": "كرزة",
+  "home": "الرئيسية",
+  "cart": "عربة التسوق",
+  "freebies": "الهبات المجانية",
+  "more": "المزيد",
+  "notifications": "الإشعارات",
+  "exitAppTitle": "هل تريد الخروج من كرزة؟",
+  "exitAppMessage": "اضغط \"خروج من التطبيق\" لتأكيد الخروج.",
+  "exitAppConfirm": "خروج من التطبيق",
+  "imageSearch": "بحث بالصورة",
+  "cancel": "إلغاء",
+  "imageSearchNoResults": "بحث بالصورة بدون نتائج",
+  "imageSearchResults": "بحث بالصورة ({count} نتيجة)",
+  "@imageSearchResults": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "categories": "الأقسام",
+  "addToCart": "أضف إلى العربة",
+  "price": "السعر",
+  "searchHint": "ابحث عن قطع الغيار...",
+  "homeSearchOnMarketplace": "ابحث في السوق",
+  "homeQuickNewRequest": "طلب جديد",
+  "homeQuickOffers": "العروض",
+  "homeQuickSections": "الأقسام",
+  "homeQuickOrders": "الطلبات"
+}

@@ -1,0 +1,1 @@
+-- Intentionally left as a remote schema snapshot placeholder.

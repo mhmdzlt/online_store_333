@@ -1,0 +1,29 @@
+name: iOS Build Check
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "stable"
+          cache: true
+
+      - name: Install Ruby gems (fastlane)
+        working-directory: ios
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: iOS build check (no codesign)
+        working-directory: ios
+        run: bundle exec fastlane build_check

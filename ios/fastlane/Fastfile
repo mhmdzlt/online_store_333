@@ -1,0 +1,64 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build iOS without codesigning (sanity check)"
+  lane :build_check do
+    sh("flutter", "pub", "get")
+    sh("flutter", "build", "ios", "--release", "--no-codesign")
+  end
+
+  desc "Build and upload to TestFlight (requires signing via match + ASC API key)"
+  lane :testflight do
+    setup_ci
+
+    key_id = ENV.fetch("ASC_KEY_ID")
+    issuer_id = ENV.fetch("ASC_ISSUER_ID")
+
+    key_p8 = ENV["ASC_KEY_P8"]
+    key_p8_b64 = ENV["ASC_KEY_P8_B64"]
+
+    if key_p8.to_s.strip.empty? && !key_p8_b64.to_s.strip.empty?
+      require "base64"
+      key_p8 = Base64.decode64(key_p8_b64)
+    end
+
+    if key_p8.to_s.strip.empty?
+      UI.user_error!("Missing ASC_KEY_P8 or ASC_KEY_P8_B64")
+    end
+
+    api_key = app_store_connect_api_key(
+      key_id: key_id,
+      issuer_id: issuer_id,
+      key_content: key_p8,
+      in_house: false
+    )
+
+    match_git_url = ENV["MATCH_GIT_URL"].to_s.strip
+    if match_git_url.empty?
+      UI.user_error!("Missing MATCH_GIT_URL. Create a private repo for match certs/profiles and set MATCH_GIT_URL secret.")
+    end
+
+    match(
+      type: "appstore",
+      git_url: match_git_url,
+      readonly: true,
+      app_identifier: ENV.fetch("IOS_BUNDLE_ID", "com.example.onlineStore333")
+    )
+
+    sh("flutter", "pub", "get")
+    sh("bash", "-lc", "cd ios && pod install")
+
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+      output_directory: "build/ios/ipa",
+      output_name: "Runner.ipa"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
