@@ -25,11 +25,11 @@ $bytes = [System.IO.File]::ReadAllBytes('AuthKey_XXXXXX.p8')
 - `IOS_BUNDLE_ID`: e.g. `com.example.onlineStore333` (should be your final production bundle id)
 - `APPLE_TEAM_ID`: your Apple Developer Team ID
 
-## Enabling upload
+## Upload behavior
 
-In `.github/workflows/ios_testflight.yml`, change the upload step condition:
+The workflow now auto-detects whether upload can run:
 
-- from: `if: ${{ false }}`
-- to: `if: ${{ true }}`
+- If all required secrets are present, it runs `fastlane testflight`.
+- If any secret is missing, it skips upload and prints a clear message.
 
-Then run the workflow manually (Actions → iOS TestFlight → Run workflow).
+Run it manually from Actions → iOS TestFlight → Run workflow.

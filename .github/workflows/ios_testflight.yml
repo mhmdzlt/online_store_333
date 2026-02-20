@@ -24,10 +24,9 @@ jobs:
         working-directory: ios
         run: bundle exec fastlane build_check
 
-      # Upload requires Apple signing assets + App Store Connect API key.
-      # Enable by setting the required GitHub Secrets and then toggling the condition below.
+      # Upload runs automatically only when all required secrets are provided.
       - name: Upload to TestFlight
-        if: ${{ false }}
+        if: ${{ secrets.IOS_BUNDLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.ASC_KEY_ID != '' && secrets.ASC_ISSUER_ID != '' && secrets.ASC_KEY_P8_B64 != '' && secrets.MATCH_GIT_URL != '' && secrets.MATCH_PASSWORD != '' }}
         working-directory: ios
         env:
           IOS_BUNDLE_ID: ${{ secrets.IOS_BUNDLE_ID }}
@@ -40,3 +39,9 @@ jobs:
           MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
         run: bundle exec fastlane testflight
+
+      - name: Upload skipped (missing secrets)
+        if: ${{ !(secrets.IOS_BUNDLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.ASC_KEY_ID != '' && secrets.ASC_ISSUER_ID != '' && secrets.ASC_KEY_P8_B64 != '' && secrets.MATCH_GIT_URL != '' && secrets.MATCH_PASSWORD != '') }}
+        run: |
+          echo "TestFlight upload skipped because one or more required GitHub Secrets are missing."
+          echo "Set IOS_BUNDLE_ID, APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8_B64, MATCH_GIT_URL, MATCH_PASSWORD."
