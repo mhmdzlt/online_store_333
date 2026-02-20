@@ -25,6 +25,25 @@ $bytes = [System.IO.File]::ReadAllBytes('AuthKey_XXXXXX.p8')
 - `IOS_BUNDLE_ID`: e.g. `com.example.onlineStore333` (should be your final production bundle id)
 - `APPLE_TEAM_ID`: your Apple Developer Team ID
 
+## One-command setup (recommended)
+
+Use the helper script in this repo to set all secrets in one run:
+
+```powershell
+pwsh .\tools\set_github_testflight_secrets.ps1 \
+	-Repo "mhmdzlt/online_store_333" \
+	-AppleTeamId "YOUR_TEAM_ID" \
+	-AscKeyId "YOUR_ASC_KEY_ID" \
+	-AscIssuerId "YOUR_ASC_ISSUER_ID" \
+	-AscKeyP8Path "C:\path\to\AuthKey_XXXXXX.p8" \
+	-MatchGitUrl "https://github.com/<org>/<repo>.git" \
+	-MatchPassword "YOUR_MATCH_PASSWORD"
+```
+
+Notes:
+- `IOS_BUNDLE_ID` is auto-detected from `ios/Runner/GoogleService-Info.plist` if not provided.
+- Requires GitHub CLI auth first: `gh auth login`.
+
 ## Upload behavior
 
 The workflow now auto-detects whether upload can run:
