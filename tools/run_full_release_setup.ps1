@@ -27,7 +27,7 @@ $gh = Get-GhPath
 & $gh auth status | Out-Null
 if ($LASTEXITCODE -ne 0) {
   Write-Output "GitHub auth required. Starting interactive login..."
-  & $gh auth login -w
+  & $gh auth login --hostname github.com --git-protocol https --web
   if ($LASTEXITCODE -ne 0) {
     throw "GitHub login failed or was cancelled."
   }
