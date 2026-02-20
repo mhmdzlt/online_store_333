@@ -8,6 +8,7 @@ param(
   [string]$AscKeyP8B64,
   [string]$MatchGitUrl,
   [string]$MatchPassword,
+  [switch]$RunWorkflow,
   [switch]$DryRun
 )
 
@@ -94,5 +95,18 @@ Set-GitHubSecret -GhPath $gh -Repo $Repo -Name "ASC_ISSUER_ID" -Value $AscIssuer
 Set-GitHubSecret -GhPath $gh -Repo $Repo -Name "ASC_KEY_P8_B64" -Value $AscKeyP8B64 -DryRun:$DryRun
 Set-GitHubSecret -GhPath $gh -Repo $Repo -Name "MATCH_GIT_URL" -Value $MatchGitUrl -DryRun:$DryRun
 Set-GitHubSecret -GhPath $gh -Repo $Repo -Name "MATCH_PASSWORD" -Value $MatchPassword -DryRun:$DryRun
+
+if ($RunWorkflow) {
+  if ($DryRun) {
+    Write-Output "DRY-RUN: would trigger workflow 'iOS TestFlight'"
+  }
+  else {
+    & $gh workflow run "iOS TestFlight" -R $Repo
+    if ($LASTEXITCODE -ne 0) {
+      throw "Failed to trigger workflow iOS TestFlight"
+    }
+    Write-Output "OK: Triggered workflow iOS TestFlight"
+  }
+}
 
 Write-Output "Done."

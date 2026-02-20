@@ -37,7 +37,8 @@ pwsh .\tools\set_github_testflight_secrets.ps1 \
 	-AscIssuerId "YOUR_ASC_ISSUER_ID" \
 	-AscKeyP8Path "C:\path\to\AuthKey_XXXXXX.p8" \
 	-MatchGitUrl "https://github.com/<org>/<repo>.git" \
-	-MatchPassword "YOUR_MATCH_PASSWORD"
+	-MatchPassword "YOUR_MATCH_PASSWORD" \
+	-RunWorkflow
 ```
 
 Notes:
